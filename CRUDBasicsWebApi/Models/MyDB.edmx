@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlayerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customPlayers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="Points" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="PER" Type="decimal" Precision="3" Scale="1" />
+        </EntityType>
+        <EntityType Name="playerAverage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Player" Type="varchar(max)" />
+          <Property Name="pts avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="assists avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="rebounds avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="blocks avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="steals avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="fouls avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="PER" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="games per season" Type="decimal" Precision="16" Scale="1" />
+        </EntityType>
+        <EntityType Name="playerAverageMin50Games">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Player" Type="varchar(max)" />
+          <Property Name="pts avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="assists avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="rebounds avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="blocks avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="steals avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="fouls avg" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="PER" Type="decimal" Precision="16" Scale="1" />
+          <Property Name="games per season" Type="decimal" Precision="16" Scale="1" />
+        </EntityType>
+        <EntityType Name="playersSeason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="smallint" />
+          <Property Name="Player" Type="varchar(max)" />
+          <Property Name="G" Type="real" />
+          <Property Name="PER" Type="real" />
+          <Property Name="FG%" Type="real" />
+          <Property Name="TRB" Type="real" />
+          <Property Name="AST" Type="real" />
+          <Property Name="STL" Type="real" />
+          <Property Name="BLK" Type="real" />
+          <Property Name="TOV" Type="real" />
+          <Property Name="PF" Type="real" />
+          <Property Name="PTS" Type="real" />
+          <Property Name="pts avg" Type="real" />
+          <Property Name="ast avg" Type="real" />
+          <Property Name="trb avg" Type="real" />
+          <Property Name="blk avg" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="stl avg" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="pf avg" Type="decimal" Precision="3" Scale="1" />
+        </EntityType>
+        <EntityContainer Name="PlayerModelStoreContainer">
+          <EntitySet Name="customPlayers" EntityType="Self.customPlayers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="playerAverage" EntityType="Self.playerAverage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="playerAverageMin50Games" EntityType="Self.playerAverageMin50Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="playersSeason" EntityType="Self.playersSeason" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlayerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="playerAverage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Player" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pts_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="assists_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="rebounds_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="blocks_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="steals_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="fouls_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="PER" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="games_per_season" Type="Decimal" Precision="16" Scale="1" />
+        </EntityType>
+        <EntityContainer Name="CrudBasicsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="playerAverages" EntityType="Self.playerAverage" />
+          <EntitySet Name="customPlayers" EntityType="PlayerModel.customPlayer" />
+          <EntitySet Name="playerAverageMin50Games" EntityType="PlayerModel.playerAverageMin50Games" />
+          <EntitySet Name="playersSeasons" EntityType="PlayerModel.playersSeason" />
+        </EntityContainer>
+        <EntityType Name="customPlayer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Points" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="PER" Type="Decimal" Precision="3" Scale="1" />
+        </EntityType>
+        <EntityType Name="playerAverageMin50Games">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Player" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pts_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="assists_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="rebounds_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="blocks_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="steals_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="fouls_avg" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="PER" Type="Decimal" Precision="16" Scale="1" />
+          <Property Name="games_per_season" Type="Decimal" Precision="16" Scale="1" />
+        </EntityType>
+        <EntityType Name="playersSeason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int16" />
+          <Property Name="Player" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="G" Type="Single" />
+          <Property Name="PER" Type="Single" />
+          <Property Name="FG_" Type="Single" />
+          <Property Name="TRB" Type="Single" />
+          <Property Name="AST" Type="Single" />
+          <Property Name="STL" Type="Single" />
+          <Property Name="BLK" Type="Single" />
+          <Property Name="TOV" Type="Single" />
+          <Property Name="PF" Type="Single" />
+          <Property Name="PTS" Type="Single" />
+          <Property Name="pts_avg" Type="Single" />
+          <Property Name="ast_avg" Type="Single" />
+          <Property Name="trb_avg" Type="Single" />
+          <Property Name="blk_avg" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="stl_avg" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="pf_avg" Type="Decimal" Precision="3" Scale="1" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlayerModelStoreContainer" CdmEntityContainer="CrudBasicsEntities">
+          <EntitySetMapping Name="playerAverages">
+            <EntityTypeMapping TypeName="PlayerModel.playerAverage">
+              <MappingFragment StoreEntitySet="playerAverage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Player" ColumnName="Player" />
+                <ScalarProperty Name="pts_avg" ColumnName="pts avg" />
+                <ScalarProperty Name="assists_avg" ColumnName="assists avg" />
+                <ScalarProperty Name="rebounds_avg" ColumnName="rebounds avg" />
+                <ScalarProperty Name="blocks_avg" ColumnName="blocks avg" />
+                <ScalarProperty Name="steals_avg" ColumnName="steals avg" />
+                <ScalarProperty Name="fouls_avg" ColumnName="fouls avg" />
+                <ScalarProperty Name="PER" ColumnName="PER" />
+                <ScalarProperty Name="games_per_season" ColumnName="games per season" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customPlayers">
+            <EntityTypeMapping TypeName="PlayerModel.customPlayer">
+              <MappingFragment StoreEntitySet="customPlayers">
+                <ScalarProperty Name="PER" ColumnName="PER" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playerAverageMin50Games">
+            <EntityTypeMapping TypeName="PlayerModel.playerAverageMin50Games">
+              <MappingFragment StoreEntitySet="playerAverageMin50Games">
+                <ScalarProperty Name="games_per_season" ColumnName="games per season" />
+                <ScalarProperty Name="PER" ColumnName="PER" />
+                <ScalarProperty Name="fouls_avg" ColumnName="fouls avg" />
+                <ScalarProperty Name="steals_avg" ColumnName="steals avg" />
+                <ScalarProperty Name="blocks_avg" ColumnName="blocks avg" />
+                <ScalarProperty Name="rebounds_avg" ColumnName="rebounds avg" />
+                <ScalarProperty Name="assists_avg" ColumnName="assists avg" />
+                <ScalarProperty Name="pts_avg" ColumnName="pts avg" />
+                <ScalarProperty Name="Player" ColumnName="Player" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="playersSeasons">
+            <EntityTypeMapping TypeName="PlayerModel.playersSeason">
+              <MappingFragment StoreEntitySet="playersSeason">
+                <ScalarProperty Name="pf_avg" ColumnName="pf avg" />
+                <ScalarProperty Name="stl_avg" ColumnName="stl avg" />
+                <ScalarProperty Name="blk_avg" ColumnName="blk avg" />
+                <ScalarProperty Name="trb_avg" ColumnName="trb avg" />
+                <ScalarProperty Name="ast_avg" ColumnName="ast avg" />
+                <ScalarProperty Name="pts_avg" ColumnName="pts avg" />
+                <ScalarProperty Name="PTS" ColumnName="PTS" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="TOV" ColumnName="TOV" />
+                <ScalarProperty Name="BLK" ColumnName="BLK" />
+                <ScalarProperty Name="STL" ColumnName="STL" />
+                <ScalarProperty Name="AST" ColumnName="AST" />
+                <ScalarProperty Name="TRB" ColumnName="TRB" />
+                <ScalarProperty Name="FG_" ColumnName="FG%" />
+                <ScalarProperty Name="PER" ColumnName="PER" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="Player" ColumnName="Player" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
