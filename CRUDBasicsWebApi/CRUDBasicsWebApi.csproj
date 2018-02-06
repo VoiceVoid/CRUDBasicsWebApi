@@ -406,6 +406,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="login.html" />
     <Content Include="Models\MyDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyDB.edmx</DependentUpon>
@@ -418,6 +419,7 @@
     </Content>
     <Content Include="playerDetails.html" />
     <Content Include="players.html" />
+    <Content Include="register.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

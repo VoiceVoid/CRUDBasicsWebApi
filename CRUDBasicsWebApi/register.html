@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Register</title>
+	<link href="Content/bootstrap.css" rel="stylesheet" />
+	<link href="Content/animate.css" rel="stylesheet" />
+	<link href="Content/animate.css" rel="stylesheet" />
+	<link href="Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
+	<link href="Content/style.css" rel="stylesheet" />
+   
+  
+   
+
+</head>
+
+<body class="gray-bg">
+	<center class="logo-name">NBA Analytics</center>
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+               
+
+            </div>
+            <h3>Register to NBA Analytics</h3>
+            <p>Create account to see it in action.</p>
+			<form id="validate">
+				<div class="form-group">
+					<input type="email" id="txtEmail" name="email" class="form-control" placeholder="Email" required="">
+				</div>
+				<div class="form-group">
+					<input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+				</div>
+				<div class="form-group">
+					<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Re-enter Password" required="">
+				</div>
+
+				
+				<div class="success" id="showText"></div>
+				<div id="loader" class="sk-spinner sk-spinner-cube-grid hide">
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+					<div class="sk-cube"></div>
+				</div>
+				<br />
+			</form>
+			<button id="btnRegister" type="submit" class="btn btn-primary block full-width m-b">Register</button>
+			<p class="text-muted text-center"><small>Already have an account?</small></p>
+			<a class="btn btn-sm btn-white btn-block" href="login.html" >Login</a>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 333 &copy; 2014</small> </p>
+        </div>
+		<div id="error"></div>
+    </div>
+
+    <!-- Mainly scripts -->
+	<script src="Scripts/jquery-1.10.2.min.js"></script>
+	<script src="Scripts/bootstrap.min.js"></script>
+	<script src="Scripts/jquery.validate.min.js"></script>
+
+	<script src="Scripts/plugins/iCheck/icheck.min.js"></script>
+    <!-- iCheck -->
+   
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+			});
+
+			
+			$('#btnRegister').click(function () {
+				$.ajax({
+					url: 'api/account/register',
+					method: 'POST',
+					data: {
+						Email: $('#txtEmail').val(),
+						Password: $('#password').val(),
+						ConfirmPassword: $('#confirmPassword').val()
+					},
+					beforeSend: function () {
+						$('#loader').removeClass('hide');
+					},
+					complete: function () {
+						$('#loader').addClass('hide');
+					},
+					success: function () {
+						$('#showText').text('Successful registration, please activate your account with your email');
+						window.location.href = 'login.html'
+					},
+					error: function (jqHXR) {
+						console.log(jqHXR);
+						$('#error').text(jqHXR).addClass('alert');
+					}
+				});
+			});
+
+			$('#validate').validate({
+				rules: {
+					email: {
+						required: true,
+						email: true
+					},
+					password: {
+						required: true,
+						strongPassword: true
+					},
+					confirmPassword: {
+						required: true,
+						equalTo: '#password'
+					}
+				},
+				messages: {
+					email: {
+						required: 'Please enter an email address',
+						email: 'Please enter a <em>valid</em> email address'
+					},
+					confirmPassword: {
+						required: 'Please enter the same password'
+					}
+				}
+			});
+
+			$.validator.addMethod('strongPassword', function (value, element) {
+				return this.optional(element) || value.length >= 6 && /\d/.test(value) && /[a-z]/i.test(value);
+			
+			}, 'Your password must be at least 6 characters long and contain at least one number and one char\'.');
+
+			
+
+        });
+    </script>
+</body>
+
+</html>
