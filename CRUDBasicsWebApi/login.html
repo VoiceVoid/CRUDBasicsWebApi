@@ -72,6 +72,7 @@
 						localStorage.setItem('accessToken', data.access_token);
 						localStorage.setItem('userName', data.userName);
 						window.location.href= 'players.html'
+						//console.log(data);
 					},
 					error: function (jqHXR) {
 						$('#errorText').text(jqHXR.responseText);
